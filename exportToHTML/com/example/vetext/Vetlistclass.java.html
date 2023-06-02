@@ -1,0 +1,63 @@
+<html>
+<head>
+<title>Vetlistclass.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000080; font-weight: bold;}
+.s1 { color: #000000;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Vetlistclass.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span>com.example.vetext;
+
+<span class="s0">public class </span>Vetlistclass {
+    <span class="s0">private </span>String admin;
+    <span class="s0">private </span>String uname,email,number;
+    <span class="s0">private </span>Vetlistclass (){}
+    <span class="s0">private </span>Vetlistclass(String admin,String uname,String email,String number){
+        <span class="s0">this</span>.admin=admin;
+        <span class="s0">this</span>.email=email;
+        <span class="s0">this</span>.number=number;
+        <span class="s0">this</span>.uname= uname;
+    }
+
+    <span class="s0">public </span>String getAdmin() {
+        <span class="s0">return </span>admin;
+    }
+
+    <span class="s0">public void </span>setAdmin(String admin) {
+        <span class="s0">this</span>.admin = admin;
+    }
+
+    <span class="s0">public </span>String getUname() {
+        <span class="s0">return </span>uname;
+    }
+
+    <span class="s0">public void </span>setUname(String uname) {
+        <span class="s0">this</span>.uname = uname;
+    }
+
+    <span class="s0">public </span>String getEmail() {
+        <span class="s0">return </span>email;
+    }
+
+    <span class="s0">public void </span>setEmail(String email) {
+        <span class="s0">this</span>.email = email;
+    }
+
+    <span class="s0">public </span>String getNumber() {
+        <span class="s0">return </span>number;
+    }
+
+    <span class="s0">public void </span>setNumber(String number) {
+        <span class="s0">this</span>.number = number;
+    }
+}
+</pre>
+</body>
+</html>

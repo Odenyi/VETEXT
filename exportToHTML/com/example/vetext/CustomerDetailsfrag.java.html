@@ -1,0 +1,93 @@
+<html>
+<head>
+<title>CustomerDetailsfrag.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000080; font-weight: bold;}
+.s1 { color: #000000;}
+.s2 { color: #808080; font-style: italic;}
+.s3 { color: #008000; font-weight: bold;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+CustomerDetailsfrag.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span>com.example.vetext;
+
+<span class="s0">import </span>android.content.Intent;
+<span class="s0">import </span>android.os.Bundle;
+
+<span class="s0">import </span>androidx.annotation.Nullable;
+<span class="s0">import </span>androidx.fragment.app.Fragment;
+
+<span class="s0">import </span>android.view.LayoutInflater;
+<span class="s0">import </span>android.view.View;
+<span class="s0">import </span>android.view.ViewGroup;
+<span class="s0">import </span>android.widget.Button;
+<span class="s0">import </span>android.widget.EditText;
+<span class="s0">import </span>android.widget.TextView;
+
+<span class="s0">import </span>com.google.android.gms.tasks.OnSuccessListener;
+<span class="s0">import </span>com.google.firebase.auth.FirebaseAuth;
+<span class="s0">import </span>com.google.firebase.auth.FirebaseUser;
+<span class="s0">import </span>com.google.firebase.firestore.DocumentReference;
+<span class="s0">import </span>com.google.firebase.firestore.DocumentSnapshot;
+<span class="s0">import </span>com.google.firebase.firestore.EventListener;
+<span class="s0">import </span>com.google.firebase.firestore.FirebaseFirestore;
+<span class="s0">import </span>com.google.firebase.firestore.FirebaseFirestoreException;
+<span class="s0">import </span>com.google.firebase.firestore.auth.User;
+
+<span class="s0">import </span>java.util.concurrent.Executor;
+
+<span class="s2">/* 
+ * A simple {@link Fragment} subclass. 
+ * Use the {@link CustomerDetailsfrag#newInstance} factory method to 
+ * create an instance of this fragment. 
+ */</span>
+<span class="s0">public class </span>CustomerDetailsfrag <span class="s0">extends </span>Fragment {
+    <span class="s0">public </span>CustomerDetailsfrag(){}
+
+    FirebaseAuth fauth;
+    FirebaseFirestore firestore;
+    String userid;
+    FirebaseUser User;
+    EditText email,username,number;
+    Button button;
+
+
+
+    @Override
+    <span class="s0">public </span>View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        <span class="s2">// Inflate the layout for this fragment</span>
+
+        View veiw= inflater.inflate(R.layout.fragment_customer_detailsfrag, container, <span class="s0">false</span>);
+        fauth=FirebaseAuth.getInstance();
+        firestore=FirebaseFirestore.getInstance();
+        email=veiw.findViewById(R.id.mail);
+        username=veiw.findViewById(R.id.username);
+        number= veiw.findViewById(R.id.phonenumber);
+
+        userid=fauth.getCurrentUser().getUid();
+        DocumentReference docRef = firestore.collection(<span class="s3">&quot;users&quot;</span>).document(userid);
+        docRef.get().addOnSuccessListener(<span class="s0">new </span>OnSuccessListener&lt;DocumentSnapshot&gt;() {
+            @Override
+            <span class="s0">public void </span>onSuccess(DocumentSnapshot documentSnapshot) {
+                <span class="s2">//com.google.firebase.firestore.auth.User user = documentSnapshot.toObject(User.class);</span>
+                username.setText(documentSnapshot.getString(<span class="s3">&quot;uname&quot;</span>));
+                number.setText(documentSnapshot.getString(<span class="s3">&quot;number&quot;</span>));
+                email.setText(documentSnapshot.getString(<span class="s3">&quot;email&quot;</span>));
+            }
+        });
+
+
+
+        <span class="s0">return </span>veiw;
+    }
+
+}</pre>
+</body>
+</html>

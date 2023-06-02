@@ -1,0 +1,84 @@
+<html>
+<head>
+<title>ShareextensionFrag.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000080; font-weight: bold;}
+.s1 { color: #000000;}
+.s2 { color: #808080; font-style: italic;}
+.s3 { color: #808080; font-weight: bold; font-style: italic;}
+.s4 { color: #008000; font-weight: bold;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+ShareextensionFrag.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span>com.example.vetext;
+
+<span class="s0">import </span>android.os.Bundle;
+
+<span class="s0">import </span>androidx.fragment.app.Fragment;
+
+<span class="s0">import </span>android.view.LayoutInflater;
+<span class="s0">import </span>android.view.View;
+<span class="s0">import </span>android.view.ViewGroup;
+
+<span class="s2">/**</span>
+ <span class="s2">* A simple {</span><span class="s3">@link </span><span class="s2">Fragment} subclass.</span>
+ <span class="s2">* Use the {</span><span class="s3">@link </span><span class="s2">ShareextensionFrag#newInstance} factory method to</span>
+ <span class="s2">* create an instance of this fragment.</span>
+ <span class="s2">*/</span>
+<span class="s0">public class </span>ShareextensionFrag <span class="s0">extends </span>Fragment {
+
+    <span class="s2">// TODO: Rename parameter arguments, choose names that match</span>
+    <span class="s2">// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER</span>
+    <span class="s0">private static final </span>String ARG_PARAM1 = <span class="s4">&quot;param1&quot;</span>;
+    <span class="s0">private static final </span>String ARG_PARAM2 = <span class="s4">&quot;param2&quot;</span>;
+
+    <span class="s2">// TODO: Rename and change types of parameters</span>
+    <span class="s0">private </span>String mParam1;
+    <span class="s0">private </span>String mParam2;
+
+    <span class="s0">public </span>ShareextensionFrag() {
+        <span class="s2">// Required empty public constructor</span>
+    }
+
+    <span class="s2">/**</span>
+     <span class="s2">* Use this factory method to create a new instance of</span>
+     <span class="s2">* this fragment using the provided parameters.</span>
+     <span class="s2">*</span>
+     <span class="s2">* </span><span class="s3">@param </span><span class="s2">param1 Parameter 1.</span>
+     <span class="s2">* </span><span class="s3">@param </span><span class="s2">param2 Parameter 2.</span>
+     <span class="s2">* </span><span class="s3">@return </span><span class="s2">A new instance of fragment ShareextensionFrag.</span>
+     <span class="s2">*/</span>
+    <span class="s2">// TODO: Rename and change types and number of parameters</span>
+    <span class="s0">public static </span>ShareextensionFrag newInstance(String param1, String param2) {
+        ShareextensionFrag fragment = <span class="s0">new </span>ShareextensionFrag();
+        Bundle args = <span class="s0">new </span>Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        <span class="s0">return </span>fragment;
+    }
+
+    @Override
+    <span class="s0">public void </span>onCreate(Bundle savedInstanceState) {
+        <span class="s0">super</span>.onCreate(savedInstanceState);
+        <span class="s0">if </span>(getArguments() != <span class="s0">null</span>) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+    }
+
+    @Override
+    <span class="s0">public </span>View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        <span class="s2">// Inflate the layout for this fragment</span>
+        <span class="s0">return </span>inflater.inflate(R.layout.fragment_shareextension, container, <span class="s0">false</span>);
+    }
+}</pre>
+</body>
+</html>

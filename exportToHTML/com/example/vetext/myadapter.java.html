@@ -1,0 +1,70 @@
+<html>
+<head>
+<title>myadapter.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000080; font-weight: bold;}
+.s1 { color: #000000;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+myadapter.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span>com.example.vetext;
+
+<span class="s0">import </span>android.view.LayoutInflater;
+<span class="s0">import </span>android.view.View;
+<span class="s0">import </span>android.view.ViewGroup;
+<span class="s0">import </span>android.widget.TextView;
+
+<span class="s0">import </span>androidx.annotation.NonNull;
+<span class="s0">import </span>androidx.recyclerview.widget.RecyclerView;
+
+<span class="s0">import </span>java.util.ArrayList;
+
+<span class="s0">public class </span>myadapter <span class="s0">extends </span>RecyclerView.Adapter&lt;myadapter.myviewholder&gt;  {
+    ArrayList&lt;Vetlistclass&gt;datalist;
+    <span class="s0">public </span>myadapter(ArrayList&lt;Vetlistclass&gt;datalist){
+        <span class="s0">this</span>.datalist=datalist;
+    }
+    @NonNull
+    @Override
+    <span class="s0">public </span>myviewholder onCreateViewHolder(@NonNull ViewGroup parent, <span class="s0">int </span>viewType) {
+       View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_vetinfo,parent,<span class="s0">false</span>);
+        <span class="s0">return new </span>myviewholder(view);
+    }
+
+    @Override
+    <span class="s0">public void </span>onBindViewHolder(@NonNull myviewholder holder, <span class="s0">int </span>position) {
+      holder.t4.setText(datalist.get(position).getAdmin());
+        holder.t2.setText(datalist.get(position).getEmail());
+        holder.t1.setText(datalist.get(position).getUname());
+        holder.t3.setText(datalist.get(position).getNumber());
+
+    }
+
+    @Override
+    <span class="s0">public int </span>getItemCount() {
+        <span class="s0">return </span>datalist.size();
+    }
+
+    <span class="s0">class </span>myviewholder <span class="s0">extends </span>RecyclerView.ViewHolder{
+        TextView t1,t2,t3,t4;
+
+        <span class="s0">public </span>myviewholder(@NonNull View itemView) {
+
+            <span class="s0">super</span>(itemView);
+            t1=itemView.findViewById(R.id.t1);
+            t2=itemView.findViewById(R.id.t2);
+            t3=itemView.findViewById(R.id.t3);
+            t4=itemView.findViewById(R.id.t4);
+
+        }
+    }
+}
+</pre>
+</body>
+</html>

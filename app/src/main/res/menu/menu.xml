@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/home"
+            android:icon="@drawable/ic_home"
+            android:title="home"/>
+        <item
+            android:id="@+id/share"
+            android:title="share"
+            android:icon="@drawable/ic_share"/>
+        <item
+            android:id="@+id/rate"
+            android:icon="@drawable/ic_rate"
+            android:title="rate officer"/>
+
+    </group>
+
+        <item
+            android:title="Profile">
+            <menu>
+                <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/famerdetails"
+                    android:icon="@drawable/ic_baseline_person_24"
+                    android:title="farmer details"/>
+                    <item
+                        android:id="@+id/Vetdetails"
+                        android:icon="@drawable/ic_baseline_person_24"
+                        android:title="Vetinary Details"/>
+                    <item
+                        android:id="@+id/Extensiondetails"
+                        android:icon="@drawable/ic_baseline_person_24"
+                        android:title="Extension Officer Details"/>
+                <item
+                    android:id="@+id/search"
+                    android:icon="@drawable/ic_baseline_search_24"
+                    android:title="search"/>
+                </group>
+            </menu>
+
+        </item>
+
+
+
+
+        <item android:title="More">
+            <menu>
+                <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/Seekadvice"
+                    android:icon="@drawable/vetdoctor"
+                    android:title="Seek advice"/>
+                <item
+                    android:id="@+id/publish"
+                    android:icon="@drawable/ic_publish"
+                    android:title="Publish Information"/>
+                <item android:id="@+id/book"
+                    android:icon="@drawable/vetdoctor"
+                    android:title="book veterinary"/>
+                    <item
+                        android:id="@+id/Schedule"
+                        android:icon="@drawable/ic_calender"
+                        android:title="Shedule Appointments"/>
+
+               <item
+                   android:id="@+id/call"
+                   android:icon="@drawable/ic_call"
+                   android:title=" Call Farmer"/>
+                    <item
+                        android:id="@+id/sendmail"
+                        android:icon="@drawable/ic_email"
+                        android:title="Sendemail"/>
+                    <item android:id="@+id/bookofficer"
+                        android:icon="@drawable/extensionofficer"
+                        android:title="book Extension officer"/>
+                    <item android:id="@+id/logout"
+                        android:icon="@drawable/ic_logout"
+                        android:title="Logout"/>
+                </group>
+            </menu>
+        </item>
+
+
+
+
+
+</menu>

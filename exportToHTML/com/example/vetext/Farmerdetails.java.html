@@ -1,0 +1,67 @@
+<html>
+<head>
+<title>Farmerdetails.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000080; font-weight: bold;}
+.s1 { color: #000000;}
+.s2 { color: #008000; font-weight: bold;}
+.s3 { color: #808080; font-style: italic;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Farmerdetails.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span>com.example.vetext;
+
+<span class="s0">import </span>androidx.appcompat.app.AppCompatActivity;
+
+<span class="s0">import </span>android.os.Bundle;
+<span class="s0">import </span>android.widget.Button;
+<span class="s0">import </span>android.widget.EditText;
+<span class="s0">import </span>android.widget.TextView;
+
+<span class="s0">import </span>com.google.android.gms.tasks.OnSuccessListener;
+<span class="s0">import </span>com.google.firebase.auth.FirebaseAuth;
+<span class="s0">import </span>com.google.firebase.auth.FirebaseUser;
+<span class="s0">import </span>com.google.firebase.firestore.DocumentReference;
+<span class="s0">import </span>com.google.firebase.firestore.DocumentSnapshot;
+<span class="s0">import </span>com.google.firebase.firestore.FirebaseFirestore;
+
+<span class="s0">public class </span>Farmerdetails <span class="s0">extends </span>AppCompatActivity {
+    FirebaseAuth fauth;
+    FirebaseFirestore firestore;
+    String userid;
+    FirebaseUser User;
+    TextView email,username,number;
+    Button button;
+
+    @Override
+    <span class="s0">protected void </span>onCreate(Bundle savedInstanceState) {
+        <span class="s0">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_farmerdetails);
+        fauth=FirebaseAuth.getInstance();
+        firestore=FirebaseFirestore.getInstance();
+        email=findViewById(R.id.textView6);
+        username=findViewById(R.id.textView7);
+        number= findViewById(R.id.textView8);
+
+        userid=fauth.getCurrentUser().getUid();
+        DocumentReference docRef = firestore.collection(<span class="s2">&quot;users&quot;</span>).document(userid);
+        docRef.get().addOnSuccessListener(<span class="s0">new </span>OnSuccessListener&lt;DocumentSnapshot&gt;() {
+            @Override
+            <span class="s0">public void </span>onSuccess(DocumentSnapshot documentSnapshot) {
+                <span class="s3">//com.google.firebase.firestore.auth.User user = documentSnapshot.toObject(User.class);</span>
+                username.setText(documentSnapshot.getString(<span class="s2">&quot;uname&quot;</span>));
+                number.setText(documentSnapshot.getString(<span class="s2">&quot;number&quot;</span>));
+                email.setText(documentSnapshot.getString(<span class="s2">&quot;email&quot;</span>));
+            }
+            });
+
+    }
+}</pre>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<html>
+<head>
+<title>AfterRegistrationbookofficerFrag.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000080; font-weight: bold;}
+.s1 { color: #000000;}
+.s2 { color: #808080; font-style: italic;}
+.s3 { color: #008000; font-weight: bold;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+AfterRegistrationbookofficerFrag.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span>com.example.vetext;
+
+<span class="s0">import </span>android.os.Bundle;
+<span class="s0">import </span>android.view.LayoutInflater;
+<span class="s0">import </span>android.view.View;
+<span class="s0">import </span>android.view.ViewGroup;
+
+<span class="s0">import </span>androidx.fragment.app.Fragment;
+<span class="s0">import </span>androidx.recyclerview.widget.LinearLayoutManager;
+<span class="s0">import </span>androidx.recyclerview.widget.RecyclerView;
+
+<span class="s0">import </span>com.google.android.gms.tasks.OnSuccessListener;
+<span class="s0">import </span>com.google.firebase.firestore.DocumentSnapshot;
+<span class="s0">import </span>com.google.firebase.firestore.FirebaseFirestore;
+<span class="s0">import </span>com.google.firebase.firestore.QuerySnapshot;
+
+<span class="s0">import </span>java.util.ArrayList;
+<span class="s0">import </span>java.util.List;
+
+
+<span class="s0">public class </span>AfterRegistrationbookofficerFrag <span class="s0">extends </span>Fragment {
+    RecyclerView doctorlist;
+    FirebaseFirestore fstore;
+    ArrayList&lt;Vetlistclass&gt; datalist;
+    myadapter adpter;
+
+
+
+    @Override
+    <span class="s0">public </span>View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        <span class="s2">// Inflate the layout for this fragment</span>
+        View view=inflater.inflate(R.layout.afterregestration_extension, container, <span class="s0">false</span>);
+        doctorlist = view.findViewById(R.id.vetlist);
+        doctorlist.setLayoutManager(<span class="s0">new </span>LinearLayoutManager(getContext()));
+        fstore = FirebaseFirestore.getInstance();
+        datalist=<span class="s0">new </span>ArrayList&lt;&gt;();
+        adpter  = <span class="s0">new </span>myadapter(datalist);
+        doctorlist.setAdapter(adpter);
+        <span class="s2">//query for firebase</span>
+        fstore.collection(<span class="s3">&quot;users&quot;</span>).whereEqualTo(<span class="s3">&quot;extension&quot;</span>,<span class="s3">&quot;Extension Officer&quot;</span>).get()
+                .addOnSuccessListener(<span class="s0">new </span>OnSuccessListener&lt;QuerySnapshot&gt;() {
+                    @Override
+                    <span class="s0">public void </span>onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        List&lt;DocumentSnapshot&gt; list = queryDocumentSnapshots.getDocuments();
+                        <span class="s0">for </span>(DocumentSnapshot vetinary : list) {
+                            Vetlistclass obj = vetinary.toObject(Vetlistclass.<span class="s0">class</span>);
+                            datalist.add(obj);
+                        }
+                        adpter.notifyDataSetChanged();
+                    }
+                });
+
+
+
+
+        <span class="s0">return </span>view;
+    }
+}</pre>
+</body>
+</html>

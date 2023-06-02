@@ -1,0 +1,134 @@
+<html>
+<head>
+<title>Publish.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000080; font-weight: bold;}
+.s1 { color: #000000;}
+.s2 { color: #808080; font-style: italic;}
+.s3 { color: #008000; font-weight: bold;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Publish.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span>com.example.vetext;
+
+<span class="s0">import </span>android.os.Bundle;
+
+<span class="s0">import </span>androidx.annotation.NonNull;
+<span class="s0">import </span>androidx.fragment.app.Fragment;
+
+<span class="s0">import </span>android.util.Log;
+<span class="s0">import </span>android.view.LayoutInflater;
+<span class="s0">import </span>android.view.View;
+<span class="s0">import </span>android.view.ViewGroup;
+<span class="s0">import </span>android.widget.Button;
+<span class="s0">import </span>android.widget.EditText;
+<span class="s0">import </span>android.widget.TextView;
+<span class="s0">import </span>android.widget.Toast;
+
+<span class="s0">import </span>com.google.android.gms.tasks.OnFailureListener;
+<span class="s0">import </span>com.google.android.gms.tasks.OnSuccessListener;
+<span class="s0">import </span>com.google.firebase.auth.FirebaseAuth;
+<span class="s0">import </span>com.google.firebase.firestore.CollectionReference;
+<span class="s0">import </span>com.google.firebase.firestore.DocumentReference;
+<span class="s0">import </span>com.google.firebase.firestore.DocumentSnapshot;
+<span class="s0">import </span>com.google.firebase.firestore.FirebaseFirestore;
+<span class="s0">import </span>com.google.firebase.firestore.QueryDocumentSnapshot;
+<span class="s0">import </span>com.google.firebase.firestore.QuerySnapshot;
+
+<span class="s0">import </span>java.util.HashMap;
+<span class="s0">import </span>java.util.Map;
+
+
+<span class="s0">public class </span>Publish <span class="s0">extends </span>Fragment {
+    FirebaseFirestore fstore;
+    EditText editText;
+    Button button,loadbutton;
+    View view;
+    String UserID;
+    FirebaseAuth mauth;
+    DocumentReference docref;
+    CollectionReference coref;
+
+
+
+    @Override
+    <span class="s0">public </span>View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        <span class="s2">// Inflate the layout for this fragment</span>
+        View view= inflater.inflate(R.layout.fragment_publish, container, <span class="s0">false</span>);
+        button =  view.findViewById(R.id.publish);
+        loadbutton= view.findViewById(R.id.Load);
+        fstore=FirebaseFirestore.getInstance();
+        mauth=FirebaseAuth.getInstance();
+        TextView textView=view.findViewById(R.id.loadpublish);
+        <span class="s2">//multiple add documents</span>
+        coref=fstore.collection(<span class="s3">&quot;Tittle&quot;</span>);
+        <span class="s2">// initialize document refrence</span>
+        docref=fstore.document(<span class="s3">&quot;tittle/from extension officer&quot;</span>);
+        editText=view.findViewById(R.id.editpublish);
+        button.setOnClickListener(<span class="s0">new </span>View.OnClickListener() {
+            @Override
+            <span class="s0">public void </span>onClick(View v) {
+                String text=editText.getText().toString().trim();
+              <span class="s2">//get from class constructor and geters</span>
+                NotePublish note=<span class="s0">new </span>NotePublish(text);
+
+                coref.add(note).addOnSuccessListener(<span class="s0">new </span>OnSuccessListener&lt;DocumentReference&gt;() {
+                    @Override
+                    <span class="s0">public void </span>onSuccess(DocumentReference documentReference) {
+                        Toast.makeText(getActivity(), <span class="s3">&quot;Published&quot;</span>, Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnFailureListener(<span class="s0">new </span>OnFailureListener() {
+                    @Override
+                    <span class="s0">public void </span>onFailure(@NonNull Exception e) {
+                        Toast.makeText(getActivity(), <span class="s3">&quot;Error&quot;</span>+e, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
+
+            }
+        });
+
+        loadbutton.setOnClickListener(<span class="s0">new </span>View.OnClickListener() {
+
+            @Override
+            <span class="s0">public void </span>onClick(View v) {
+                coref.get().addOnSuccessListener(<span class="s0">new </span>OnSuccessListener&lt;QuerySnapshot&gt;() {
+                    @Override
+                    <span class="s0">public void </span>onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        String input=<span class="s3">&quot;&quot;</span>;
+                        <span class="s0">for</span>(QueryDocumentSnapshot documentSnapshot:queryDocumentSnapshots){
+                            NotePublish note=documentSnapshot.toObject(NotePublish.<span class="s0">class</span>);
+                            String title=note.getTittle();
+                            input += <span class="s3">&quot;Tittle&quot; </span>+title +<span class="s3">&quot;</span><span class="s0">\n</span><span class="s3">&quot;</span>;
+                            textView.setText(<span class="s3">&quot;&quot;</span>);
+
+
+                        }
+
+                    }
+                }).addOnFailureListener(<span class="s0">new </span>OnFailureListener() {
+                    @Override
+                    <span class="s0">public void </span>onFailure(@NonNull Exception e) {
+                        Toast.makeText(getActivity(), <span class="s3">&quot;error&quot;</span>+e, Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+            }
+        });
+        <span class="s0">return </span>view;
+    }
+
+}
+
+
+</pre>
+</body>
+</html>

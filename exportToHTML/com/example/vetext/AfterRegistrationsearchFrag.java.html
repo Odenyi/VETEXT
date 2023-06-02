@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>AfterRegistrationsearchFrag.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #000080; font-weight: bold;}
+.s1 { color: #000000;}
+.s2 { color: #808080; font-style: italic;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+AfterRegistrationsearchFrag.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span>com.example.vetext;
+
+<span class="s0">import </span>android.os.Bundle;
+<span class="s0">import </span>android.view.LayoutInflater;
+<span class="s0">import </span>android.view.View;
+<span class="s0">import </span>android.view.ViewGroup;
+<span class="s0">import </span>android.widget.ListView;
+<span class="s0">import </span>android.widget.SearchView;
+
+<span class="s0">import </span>androidx.fragment.app.Fragment;
+<span class="s0">public class </span>AfterRegistrationsearchFrag <span class="s0">extends </span>Fragment {
+
+    SearchView search;
+    ListView list;
+
+    @Override
+    <span class="s0">public </span>View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        <span class="s2">// Inflate the layout for this fragment</span>
+        View view=inflater.inflate(R.layout.fragment_after_registration_share, container, <span class="s0">false</span>);
+        <span class="s0">return </span>view;
+    }
+}</pre>
+</body>
+</html>
